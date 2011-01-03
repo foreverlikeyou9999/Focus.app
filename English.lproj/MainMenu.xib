@@ -51,7 +51,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<object class="NSMenuItem" id="778916248">
 						<reference key="NSMenu" ref="268248006"/>
-						<string key="NSTitle">Time till break</string>
+						<string key="NSTitle">Not Running</string>
 						<string key="NSKeyEquiv"/>
 						<int key="NSMnemonicLoc">2147483647</int>
 						<object class="NSCustomResource" key="NSOnImage" id="418082083">
@@ -804,6 +804,22 @@
 					</object>
 					<int key="connectionID">685</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">startItem</string>
+						<reference key="source" ref="882222250"/>
+						<reference key="destination" ref="20806122"/>
+					</object>
+					<int key="connectionID">686</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">timeRemaning</string>
+						<reference key="source" ref="882222250"/>
+						<reference key="destination" ref="778916248"/>
+					</object>
+					<int key="connectionID">687</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -1262,7 +1278,7 @@
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
-					<string>{{92, 848}, {151, 73}}</string>
+					<string>{{398, 838}, {149, 73}}</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
 					<string>com.apple.InterfaceBuilder.CocoaPlugin</string>
@@ -1342,7 +1358,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">685</int>
+			<int key="maxID">687</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -1394,11 +1410,15 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>focusMinutes</string>
 							<string>focusWindow</string>
+							<string>startItem</string>
+							<string>timeRemaning</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>NSTextField</string>
 							<string>NSWindow</string>
+							<string>NSMenuItem</string>
+							<string>NSMenuItem</string>
 						</object>
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">

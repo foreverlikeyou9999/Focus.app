@@ -12,7 +12,11 @@
 
 @interface FocusController : NSObject {
     IBOutlet NSWindow *focusWindow;
-    IBOutlet NSTextField *focusMinutes;    
+    IBOutlet NSTextField *focusMinutes;
+    IBOutlet NSMenuItem *timeRemaning;
+    IBOutlet NSMenuItem *startItem;
+    
+    NSInteger timeRemaningMinutes;
 }
 
 - (IBAction) openStartFocusingWindow: (id) sender;

@@ -91,6 +91,20 @@
     [self checkMinutesIsInteger];
 }
 
+- (void) updateTimeRemaning: (NSTimer*) timer
+{
+    timeRemaningMinutes -= ([timer timeInterval] / 60);
+    if(timeRemaningMinutes > 0)
+    {
+        [timeRemaning setTitleWithMnemonic:[NSString stringWithFormat:@"&About %d minutes remaning", timeRemaningMinutes]];
+    } else {
+        [timeRemaning setTitleWithMnemonic:[NSString stringWithFormat:@"Not Running"]];
+        [startItem setTarget:self];
+        [timer invalidate];
+    }
+    
+}
+
 - (IBAction) startFocusing: (id) sender
 {            
     if([self checkMinutesIsInteger])
@@ -101,14 +115,20 @@
         OSStatus status;     
         NSString *pathToHelper = [NSString stringWithFormat:@"%@/FocusHelper", [[NSBundle mainBundle] resourcePath]];
     
-    	// We have to use an external tool otherwise when we want to
-        // reenable the network connectivity unless delay is < 5 minutes
-        // the user would have to enter a password and that sucks
-    	char *tool = [pathToHelper cStringUsingEncoding:[NSString defaultCStringEncoding]];
-    	char *args[] = {[[focusMinutes stringValue] cStringUsingEncoding:[NSString defaultCStringEncoding]], NULL};
-	
+        We have to use an external tool otherwise when we want to
+        reenable the network connectivity unless delay is < 5 minutes
+        the user would have to enter a password and that sucks
+        char *tool = [pathToHelper cStringUsingEncoding:[NSString defaultCStringEncoding]];
+        char *args[] = {[[focusMinutes stringValue] cStringUsingEncoding:[NSString defaultCStringEncoding]], NULL};
+         
         status = AuthorizationExecuteWithPrivileges(authorizationRef, tool, kAuthorizationFlagDefaults, args, NULL);
         if(status != errAuthorizationSuccess) NSLog(@"Error Executing With Authorization: %@", [self OSStatusToNSString:status]);
+        
+        timeRemaningMinutes = [focusMinutes integerValue];
+        [timeRemaning setTitleWithMnemonic:[NSString stringWithFormat:@"&About %d minutes remaning", timeRemaningMinutes]];
+        
+        [NSTimer scheduledTimerWithTimeInterval:(60 * 5) target:self selector:@selector(updateTimeRemaning:) userInfo:nil repeats:YES];        
+        [startItem setTarget:nil];        
     }
 }
 
