@@ -33,6 +33,7 @@ void removeCurrentRules()
 {
     NSArray *currentRuleIDs = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentRuleIDs"];
     removeRulesWithIDs(currentRuleIDs);
+    NSLog(@"Removed internet block");
     
     [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"currentRuleIDs"];
     [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"focusing"];
@@ -54,7 +55,7 @@ NSString* blockAllOutgoing()
 
 NSMutableArray* allowAllOutgoingDNS()
 {
-    NSArray *DNSIPFWRules = [NSArray arrayWithObjects:@"add allow tcp from any to any 53", @"add allow udp from any to any 53", @"add allow udp from any 53 to any", nil];
+    NSArray *DNSIPFWRules = [NSArray arrayWithObjects:@"add allow tcp from any to any 53 setup", @"add allow udp from any to any 53", @"add allow udp from any 53 to any", nil];
     NSMutableArray *DNSExceptionRuleIDs = [NSMutableArray arrayWithCapacity:[DNSIPFWRules count]];
 
     for(id rule in DNSIPFWRules)
@@ -65,11 +66,12 @@ NSMutableArray* allowAllOutgoingDNS()
     return DNSExceptionRuleIDs;
 }
 
-NSMutableArray* allowAllOutgoingExceptions()
+NSMutableArray* allowAllOutgoingExceptions(NSArray *exceptions)
 {
-    NSMutableArray *exceptions = [[NSUserDefaults standardUserDefaults] objectForKey:@"exceptions"];
     NSMutableArray *exceptionRuleIDs = [NSMutableArray arrayWithCapacity:[exceptions count]];
-    NSLog(@"%@", exceptions);
+    NSArray *protocols = [NSArray arrayWithObjects:@"tcp", @"udp", @"icmp", nil];
+    NSLog(@"Adding allowances for exceptions, this might take a few seconds while domain names are resolved");
+    
     int i = 1;
     for(id exception in exceptions) 
     {
@@ -87,9 +89,12 @@ NSMutableArray* allowAllOutgoingExceptions()
         // wasted 11 lines. It's a possibility since I really am not that funny
         // oh look now it's 12 lines. Anyways, good day, good friend.
         if(i > 5) break;
-    	
-        NSString *command = [NSString stringWithFormat:@"add allow tcp from any to %@", exception];        
-        [exceptionRuleIDs addObject:ruleIDFromNSTaskAndRelease(runIPFWCommand(command))];
+    	        
+        for(id protocol in protocols)
+        {
+            NSString *command = [NSString stringWithFormat:@"add allow %@ from any to %@", protocol, exception];
+            [exceptionRuleIDs addObject:ruleIDFromNSTaskAndRelease(runIPFWCommand(command))];   
+        }        
         
         i++;
     }
@@ -101,13 +106,16 @@ int main(int argc, char *argv[])
 {
     NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
     NSMutableArray *newRuleIDs = [NSMutableArray arrayWithCapacity:9];
-    
+        
+    [newRuleIDs addObjectsFromArray:allowAllOutgoingDNS()];    
+    NSDictionary *prefs = [[NSUserDefaults standardUserDefaults] persistentDomainForName:@"com.benmcredmond.focus"];    
+    [newRuleIDs addObjectsFromArray:allowAllOutgoingExceptions([prefs objectForKey:@"exceptions"])];
+        
     [newRuleIDs addObject:blockAllOutgoing()];
-    [newRuleIDs addObjectsFromArray:allowAllOutgoingDNS()];
-    [newRuleIDs addObjectsFromArray:allowAllOutgoingExceptions()];    
     
     [[NSUserDefaults standardUserDefaults] setObject:newRuleIDs forKey:@"currentRuleIDs"];
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"focusing"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
     int sleepTime = atoi(argv[1]) * 60;
     NSLog(@"Helper sleeping for: %d seconds", sleepTime);

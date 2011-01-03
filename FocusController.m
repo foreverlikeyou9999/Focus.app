@@ -63,10 +63,12 @@
     
     NSString *pathToHelper = [NSString stringWithFormat:@"%@/FocusHelper", [[NSBundle mainBundle] resourcePath]];
     
-	// Run the tool using the authorization reference
+	// We have to use an external tool otherwise when we want to
+    // reenable the network connectivity unless delay is < 5 minutes
+    // the user would have to enter a password and that sucks
 	char *tool = [pathToHelper cStringUsingEncoding:[NSString defaultCStringEncoding]];
 	char *args[] = {[[focusMinutes stringValue] cStringUsingEncoding:[NSString defaultCStringEncoding]], NULL};
-	
+		
     status = AuthorizationExecuteWithPrivileges(authorizationRef, tool, kAuthorizationFlagDefaults, args, NULL);
     if(status != errAuthorizationSuccess) NSLog(@"Error Executing With Authorization: %@", [self OSStatusToNSString:status]);
 }
