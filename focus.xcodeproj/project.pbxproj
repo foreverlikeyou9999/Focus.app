@@ -15,6 +15,7 @@
 		B57F69DD12D20F51004DB1E7 /* FocusHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = B57F69D812D20F33004DB1E7 /* FocusHelper.m */; };
 		B57F69DE12D20F9B004DB1E7 /* FocusHelper in Resources */ = {isa = PBXBuildFile; fileRef = B57F69CF12D20EF7004DB1E7 /* FocusHelper */; };
 		B57F69F912D21121004DB1E7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B57F69F812D21121004DB1E7 /* Cocoa.framework */; };
+		B57F6A7A12D28151004DB1E7 /* focus.icns in Resources */ = {isa = PBXBuildFile; fileRef = B57F6A7912D28151004DB1E7 /* focus.icns */; };
 		B5BF8A2112C4BEDB003D44E6 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BF8A2012C4BEDB003D44E6 /* AppController.m */; };
 		B5BF8A4212C50A75003D44E6 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BF8A4112C50A75003D44E6 /* icon.png */; };
 		B5BF8A5412C50DEA003D44E6 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BF8A5312C50DEA003D44E6 /* SettingsController.m */; };
@@ -48,6 +49,7 @@
 		B57F69CF12D20EF7004DB1E7 /* FocusHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FocusHelper; sourceTree = BUILT_PRODUCTS_DIR; };
 		B57F69D812D20F33004DB1E7 /* FocusHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusHelper.m; sourceTree = "<group>"; };
 		B57F69F812D21121004DB1E7 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B57F6A7912D28151004DB1E7 /* focus.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = focus.icns; sourceTree = "<group>"; };
 		B5BF8A1F12C4BEDB003D44E6 /* AppController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppController.h; sourceTree = "<group>"; };
 		B5BF8A2012C4BEDB003D44E6 /* AppController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppController.m; sourceTree = "<group>"; };
 		B5BF8A4112C50A75003D44E6 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 		B5BF8A3612C50A48003D44E6 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				B57F6A7912D28151004DB1E7 /* focus.icns */,
 				B5BF8A4112C50A75003D44E6 /* icon.png */,
 			);
 			name = Images;
@@ -249,6 +252,7 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				B5BF8A4212C50A75003D44E6 /* icon.png in Resources */,
+				B57F6A7A12D28151004DB1E7 /* focus.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
