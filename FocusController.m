@@ -136,8 +136,15 @@
         timeRemaningMinutes = [focusMinutes integerValue];
         [timeRemaning setTitleWithMnemonic:[NSString stringWithFormat:@"&About %d minutes remaning", timeRemaningMinutes]];
         
-        [NSTimer scheduledTimerWithTimeInterval:(60 * 5) target:self selector:@selector(updateTimeRemaning:) userInfo:nil repeats:YES];        
-        [startItem setTarget:nil];        
+        if(timeRemaningMinutes < 5)
+        {
+            [NSTimer scheduledTimerWithTimeInterval:(60 * 1) target:self selector:@selector(updateTimeRemaning:) userInfo:nil repeats:YES];
+        } else {
+            [NSTimer scheduledTimerWithTimeInterval:(60 * 5) target:self selector:@selector(updateTimeRemaning:) userInfo:nil repeats:YES];
+        }
+        
+        [startItem setTarget:nil];
+        [focusWindow close];
     }
 }
 

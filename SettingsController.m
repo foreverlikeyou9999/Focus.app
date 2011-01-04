@@ -15,10 +15,7 @@
 - (id) init 
 {
     self = [super init];
-    
-    validate = [[BMValidation alloc] init];
-    [validate setDelegate:self];
-    
+        
     defaults = [NSUserDefaults standardUserDefaults];
     exceptions = [defaults objectForKey:@"exceptions"];
 
@@ -29,7 +26,6 @@
 
 - (void) dealloc 
 {
-    [validate release];
     [exceptions release];
     [super dealloc];
 }
@@ -50,12 +46,12 @@
 
 + (int) defaultFocusMintues
 {
-    [[NSUserDefaults standardUserDefaults] integerForKey:@"defaultFocusMinutes"];
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"defaultFocusMinutes"];
 }
 
 + (NSMutableArray*) exceptions
 {
-    [[NSUserDefaults standardUserDefaults] objectForKey:@"exceptions"];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"exceptions"];
 }
 
 - (void) awakeFromNib 

@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BMValidation.h"
 
 @interface SettingsController : NSObject <NSTableViewDataSource> {
     IBOutlet NSWindow *settingsWindow;
@@ -20,8 +19,7 @@
     IBOutlet NSButton *removeExceptionButton;
     
     int maxExceptions;
-        
-    BMValidation *validate;
+
     NSUserDefaults *defaults;
     
     NSMutableArray *exceptions;

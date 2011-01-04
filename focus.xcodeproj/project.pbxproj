@@ -19,7 +19,6 @@
 		B5BF8A2112C4BEDB003D44E6 /* AppController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BF8A2012C4BEDB003D44E6 /* AppController.m */; };
 		B5BF8A4212C50A75003D44E6 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B5BF8A4112C50A75003D44E6 /* icon.png */; };
 		B5BF8A5412C50DEA003D44E6 /* SettingsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BF8A5312C50DEA003D44E6 /* SettingsController.m */; };
-		B5BF8A8E12C55C66003D44E6 /* BMValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BF8A8D12C55C66003D44E6 /* BMValidation.m */; };
 		B5BF8D4312C6BA07003D44E6 /* FocusController.m in Sources */ = {isa = PBXBuildFile; fileRef = B5BF8D4212C6BA07003D44E6 /* FocusController.m */; };
 		B5BF8DB612C6DCE1003D44E6 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5BF8DB512C6DCE1003D44E6 /* Security.framework */; };
 /* End PBXBuildFile section */
@@ -55,8 +54,6 @@
 		B5BF8A4112C50A75003D44E6 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		B5BF8A5212C50DEA003D44E6 /* SettingsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsController.h; sourceTree = "<group>"; };
 		B5BF8A5312C50DEA003D44E6 /* SettingsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsController.m; sourceTree = "<group>"; };
-		B5BF8A8C12C55C66003D44E6 /* BMValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMValidation.h; sourceTree = "<group>"; };
-		B5BF8A8D12C55C66003D44E6 /* BMValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMValidation.m; sourceTree = "<group>"; };
 		B5BF8D4112C6BA07003D44E6 /* FocusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusController.h; sourceTree = "<group>"; };
 		B5BF8D4212C6BA07003D44E6 /* FocusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FocusController.m; sourceTree = "<group>"; };
 		B5BF8DB512C6DCE1003D44E6 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -154,8 +151,6 @@
 				B5BF8A3612C50A48003D44E6 /* Images */,
 				8D1107310486CEB800E47090 /* focus-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
-				B5BF8A8C12C55C66003D44E6 /* BMValidation.h */,
-				B5BF8A8D12C55C66003D44E6 /* BMValidation.m */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
 			);
 			name = Resources;
@@ -267,7 +262,6 @@
 				256AC3DA0F4B6AC300CF3369 /* focusAppDelegate.m in Sources */,
 				B5BF8A2112C4BEDB003D44E6 /* AppController.m in Sources */,
 				B5BF8A5412C50DEA003D44E6 /* SettingsController.m in Sources */,
-				B5BF8A8E12C55C66003D44E6 /* BMValidation.m in Sources */,
 				B5BF8D4312C6BA07003D44E6 /* FocusController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
