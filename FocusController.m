@@ -115,9 +115,9 @@
         OSStatus status;     
         NSString *pathToHelper = [NSString stringWithFormat:@"%@/FocusHelper", [[NSBundle mainBundle] resourcePath]];
     
-        We have to use an external tool otherwise when we want to
-        reenable the network connectivity unless delay is < 5 minutes
-        the user would have to enter a password and that sucks
+        // We have to use an external tool otherwise when we want to
+        // reenable the network connectivity unless delay is < 5 minutes
+        // the user would have to enter a password and that sucks
         char *tool = [pathToHelper cStringUsingEncoding:[NSString defaultCStringEncoding]];
         char *args[] = {[[focusMinutes stringValue] cStringUsingEncoding:[NSString defaultCStringEncoding]], NULL};
          
