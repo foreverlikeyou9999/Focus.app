@@ -29,7 +29,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B57F69CE12D20EF7004DB1E7 /* FocusHelper */;
+			remoteGlobalIDString = B57F69CE12D20EF7004DB1E7;
 			remoteInfo = FocusHelper;
 		};
 /* End PBXContainerItemProxy section */

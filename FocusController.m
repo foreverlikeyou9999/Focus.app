@@ -109,6 +109,15 @@
 {            
     if([self checkMinutesIsInteger])
     {
+        NSAlert *alert = [NSAlert alertWithMessageText:@"For your information" 
+                                  defaultButton:@"Got it" 
+                                  alternateButton:@"Ye, hold it right there" 
+                                  otherButton:nil 
+                                  informativeTextWithFormat:@"There is no easy way to re-enable your internet before the time limit is up."];
+        
+        NSInteger response = [alert runModal];        
+        if(response == NSAlertAlternateReturn) return;
+        
         AuthorizationRef authorizationRef = [self setupAuthorization];
         if(authorizationRef == nil) return;
         
