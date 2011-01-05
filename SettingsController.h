@@ -25,8 +25,6 @@
     NSMutableArray *exceptionsArray;
 }
 
-@property (readwrite, copy) NSMutableArray *exceptions;
-
 - (IBAction) openSettings: (id) sender;
 - (IBAction) saved: (id) sender;
 - (IBAction) defaultFocusMinutesUpdated: (id) sender;

@@ -10,8 +10,6 @@
 
 @implementation SettingsController
 
-@synthesize exceptions;
-
 - (id) init 
 {
     self = [super init];
@@ -78,8 +76,9 @@
 }
 
 - (IBAction) saved: (id) sender 
-{    
-    [defaults setObject:exceptions forKey:@"exceptions"];    
+{   
+    [defaults setInteger:[defaultFocusMinutes integerValue] forKey:@"defaultFocusMinutes"];
+    [defaults setObject:exceptionsArray forKey:@"exceptions"];    
     [defaults synchronize];
     [settingsWindow performClose:self];
 }
@@ -139,8 +138,7 @@
     if([exceptionsArray count] >= maxExceptions)
     {
         NSBeep();
-    } else {        
-        NSLog(@"Exceptions: %@", exceptions);
+    } else {
         [exceptionsArray addObject:@""];
         [exceptionsTable reloadData];
         
