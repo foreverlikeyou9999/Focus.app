@@ -22,7 +22,7 @@
 
     NSUserDefaults *defaults;
     
-    NSMutableArray *exceptions;
+    NSMutableArray *exceptionsArray;
 }
 
 @property (readwrite, copy) NSMutableArray *exceptions;
@@ -33,7 +33,7 @@
 - (IBAction) closeWindow: (id) sender;
 
 - (void) awakeFromNib;
-+ (void) setDefaultSettingsIfFirstRun;
+- (void) setDefaultSettingsIfFirstRun;
 
 // Class methods to retrieve values for settings
 + (int) defaultFocusMintues;

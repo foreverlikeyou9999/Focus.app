@@ -20,8 +20,6 @@
     [statusItem setImage:[NSImage imageNamed:@"icon.png"]];
     [statusItem setEnabled:YES];    
 	[statusItem setMenu:menu];
-	
-    [SettingsController setDefaultSettingsIfFirstRun];
 }
 
 @end

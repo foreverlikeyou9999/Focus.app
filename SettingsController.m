@@ -15,9 +15,17 @@
 - (id) init 
 {
     self = [super init];
-        
+    
     defaults = [NSUserDefaults standardUserDefaults];
-    exceptions = [defaults objectForKey:@"exceptions"];
+    [self setDefaultSettingsIfFirstRun];        
+
+    exceptionsArray = (NSMutableArray*) [NSMutableArray arrayWithCapacity:5];
+    
+    // Not sure why but somewhere it's being released, quick fix for now
+    [exceptionsArray retain];
+    
+    NSArray *exceptionsInPreferences = [defaults objectForKey:@"exceptions"];
+    if(exceptionsInPreferences != nil) [exceptionsArray addObjectsFromArray:exceptionsInPreferences];
 
     maxExceptions = 5;
     
@@ -26,16 +34,14 @@
 
 - (void) dealloc 
 {
-    [exceptions release];
+    [exceptionsArray release];
     [super dealloc];
 }
 
-+ (void) setDefaultSettingsIfFirstRun 
+- (void) setDefaultSettingsIfFirstRun 
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     BOOL openedBefore = [defaults boolForKey:@"openedBefore"];
-    
-    if(openedBefore == NO) 
+    if(openedBefore == NO)
     {
         [defaults setBool:YES forKey:@"openedBefore"];
         [defaults setInteger: 60 forKey:@"defaultFocusMinutes"];        
@@ -94,7 +100,7 @@
 // Stuff which makes the table work
 - (void) updateExceptionsRemaningLabelAndButtonAvailability 
 {
-    int remaningExceptions = ((maxExceptions) - [exceptions count]);
+    int remaningExceptions = ((maxExceptions) - [exceptionsArray count]);
     [exceptionsRemaningLabel setObjectValue:[NSString stringWithFormat:@"(%d remaning)", remaningExceptions]];
     
     if(remaningExceptions == maxExceptions)
@@ -120,8 +126,8 @@
         NSBeep();
         return;
     } else {
-        [exceptions removeObjectAtIndex:rowIndex];
-        NSLog(@"%d", [exceptions count]);        
+        [exceptionsArray removeObjectAtIndex:rowIndex];
+        NSLog(@"%d", [exceptionsArray count]);        
         [exceptionsTable reloadData];
         
         [self updateExceptionsRemaningLabelAndButtonAvailability];
@@ -130,11 +136,12 @@
 
 - (IBAction) createException: (id) sender 
 {
-    if([exceptions count] >= maxExceptions)
+    if([exceptionsArray count] >= maxExceptions)
     {
         NSBeep();
-    } else {
-        [exceptions addObject:@""];
+    } else {        
+        NSLog(@"Exceptions: %@", exceptions);
+        [exceptionsArray addObject:@""];
         [exceptionsTable reloadData];
         
         [self updateExceptionsRemaningLabelAndButtonAvailability];
@@ -143,14 +150,14 @@
 
 - (int) numberOfRowsInTableView: (NSTableView*) aTableView 
 {
-    return [exceptions count];
+    return [exceptionsArray count];
 }
 
 - (id) tableView: (NSTableView*) aTableView 
        objectValueForTableColumn: (NSTableColumn*) aTableColumn
        row: (NSInteger) rowIndex 
 {
-    return [exceptions objectAtIndex:rowIndex];
+    return [exceptionsArray objectAtIndex:rowIndex];
 }
 
 - (void) tableView: (NSTableView *) aTableView
@@ -158,8 +165,8 @@
          forTableColumn: (NSTableView*) aTableColumn
          row: (NSInteger) rowIndex
 {
-    [exceptions insertObject: anObject atIndex:rowIndex];
-    [exceptions removeObjectAtIndex:(rowIndex + 1)];
+    [exceptionsArray insertObject: anObject atIndex:rowIndex];
+    [exceptionsArray removeObjectAtIndex:(rowIndex + 1)];
 }
 
 @end
